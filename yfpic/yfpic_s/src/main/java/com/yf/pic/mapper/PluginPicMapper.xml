@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yf.pic.mapper.PluginPicMapper">
+		<resultMap id="result_ResultMap_PluginPicExtend" type="com.yf.pic.entity.PluginPic" >
+		<id column="PLUGIN_PIC_ID" property="pluginPicId"/>
+		<result column="PIC_ID" property="picId"/>
+		<result column="USER_PLUGIN_ID" property="userPluginId"/>
+		<result column="PLUGIN_ORDER" property="pluginOrder"/>
+		<result column="CREATE_TIME" property="createTime"/>
+		
+		<result column="PIC_URL" property="picUrl"/>
+	</resultMap>
+	<sql id="Example_Where_Clause">
+		<where>
+			<if test="@com.cykj.grcloud.util.Ognl@isNotEmpty( pluginPicId )">
+				AND plugin_pic_id = #{pluginPicId}
+			</if>
+			<if test="@com.cykj.grcloud.util.Ognl@isNotEmpty( picId )">
+				AND pic_id = #{picId}
+			</if>
+			<if test="@com.cykj.grcloud.util.Ognl@isNotEmpty( userPluginId )">
+				AND user_plugin_id = #{userPluginId}
+			</if>
+			<if test="@com.cykj.grcloud.util.Ognl@isNotEmpty( pluginOrder )">
+				AND plugin_order = #{pluginOrder}
+			</if>
+				<if test="@com.cykj.grcloud.util.Ognl@isNotEmpty( createTimeStart )">
+				AND <![CDATA[create_time >= #{createTimeStart}]]>
+			</if>
+			<if test="@com.cykj.grcloud.util.Ognl@isNotEmpty( createTimeEnd )">
+				AND <![CDATA[create_time <= #{createTimeEnd}]]>
+			</if>
+		</where>
+	</sql>
+
+	<delete id="deleteByCondition" parameterType="java.util.Map">
+		delete from T_P_PLUGIN_PIC
+		<include refid="Example_Where_Clause" />
+	</delete>
+	
+	<select id="getAllbyCondition" parameterType="java.util.Map" resultMap="result_ResultMap_PluginPicExtend">
+		select pp.*,p.pic_url from T_P_PLUGIN_PIC pp
+		left join T_P_PIC p on pp.pic_id = p.pic_id
+		<where>
+			<if test="@com.cykj.grcloud.util.Ognl@isNotEmpty( userPluginId )">
+				AND pp.user_plugin_id = #{userPluginId}
+			</if>
+		</where>
+		<if test="orderByClause != null and orderByClause !=''">
+			order by ${orderByClause}
+		</if>
+	</select>
+</mapper>

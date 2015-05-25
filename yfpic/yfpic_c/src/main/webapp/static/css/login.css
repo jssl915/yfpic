@@ -1,0 +1,15 @@
+@charset "utf-8";*{margin:0;padding:0;}
+body{background:#07236d;overflow:hidden;}
+.content{background:#3b80e8;background:-moz-radial-gradient(center,ellipse cover,#3b80e8 0%,#07236d 66%,#07236d 100%);background:-webkit-gradient(radial,center center,0px,center center,100%,color-stop(0%,#3b80e8),color-stop(66%,#07236d),color-stop(100%,#07236d));background:-webkit-radial-gradient(center,ellipse cover,#3b80e8 0%,#07236d 66%,#07236d 100%);background:-o-radial-gradient(center,ellipse cover,#3b80e8 0%,#07236d 66%,#07236d 100%);background:-ms-radial-gradient(center,ellipse cover,#3b80e8 0%,#07236d 66%,#07236d 100%);background:radial-gradient(ellipse at center,#3b80e8 0%,#07236d 66%,#07236d 100%);filter:progid:DXImageTransform.Microsoft.gradient( startColorstr='#3b80e8',endColorstr='#07236d',GradientType=1 );width:600px;height:600px;position:absolute;left:50%;top:50%;margin-left:-300px;margin-top:-300px;}
+.login-div{background:url(../images/login_div.png);width:685px;height:510px;position:absolute;left:50%;top:50%;margin-left:-342px;margin-top:-205px;}
+.login-title1{position:absolute;top:54px;left:238px;width:200px;font-size:25px;font-family:"宋体";font-weight:600;color:#fff;text-align:center;}
+.login-title2{position:absolute;top:90px;left:190px;width:300px;font-size:46px;font-family:"宋体";font-weight:800;color:#fff;text-align:center;}
+.login-btn{background:url(../images/login_btn.png);width:174px;height:177px;position:absolute;top:146px;right:55px;cursor:pointer;}
+.login-btn:hover{background:url(../images/login_btn.png);width:174px;height:177px;position:absolute;top:145px;right:55px;cursor:pointer;-webkit-transform:scale(1.05);-webkit-transition:all .3s ease-in-out;-moz-transform:scale(1.05);-moz-transition:all .3s ease-in-out;}
+.login-table{position:absolute;top:192px;left:123px;}
+.login-table td{height:30px;}
+.login-table .left{width:80px;text-align:center;color:#CCCCCC;}
+.login-text{width:200px;height:20px;padding-left:2px;border:1px solid #0d7ed5;border-radius:3px;}
+.login-text:focus{border:1px solid #0000FF;padding-left:2px;border-radius:3px;}
+.login-wz{position:absolute;bottom:120px;left:243px;color:#6699FF;font-size:12px;}
+.errorMessages{position:absolute;bottom:164px;left:162px;color:red;width:350px;text-align:center;font-size:24px;}

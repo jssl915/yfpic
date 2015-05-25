@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yf.pic.mapper.PicUserMapper">
+
+	<sql id="Example_Where_Clause">
+		<where>
+			<if test="@com.cykj.grcloud.util.Ognl@isNotEmpty( notPUserId )">
+				AND p_user_id != #{notPUserId}
+			</if>
+			<if test="@com.cykj.grcloud.util.Ognl@isNotEmpty( pUserNameLike )">
+				AND p_user_name like '%${pUserNameLike}%'
+			</if>
+			<if test="@com.cykj.grcloud.util.Ognl@isNotEmpty( pRealNameLike )">
+				AND p_real_name like '%${pRealNameLike}%'
+			</if>
+			<if test="@com.cykj.grcloud.util.Ognl@isNotEmpty( pUserId )">
+				AND p_user_id = #{pUserId}
+			</if>
+			<if test="@com.cykj.grcloud.util.Ognl@isNotEmpty( pUserName )">
+				AND p_user_name = #{pUserName}
+			</if>
+			<if test="@com.cykj.grcloud.util.Ognl@isNotEmpty( pRealName )">
+				AND p_real_name = #{pRealName}
+			</if>
+			<if test="@com.cykj.grcloud.util.Ognl@isNotEmpty( pUserPsd )">
+				AND p_user_psd = #{pUserPsd}
+			</if>
+			<if test="@com.cykj.grcloud.util.Ognl@isNotEmpty( pUserSex )">
+				AND p_user_sex = #{pUserSex}
+			</if>
+			<if test="@com.cykj.grcloud.util.Ognl@isNotEmpty( pMobile )">
+				AND p_mobile = #{pMobile}
+			</if>
+			<if test="@com.cykj.grcloud.util.Ognl@isNotEmpty( pUserEmail )">
+				AND p_user_email = #{pUserEmail}
+			</if>
+			<if test="@com.cykj.grcloud.util.Ognl@isNotEmpty( pUserOrder )">
+				AND p_user_order = #{pUserOrder}
+			</if>
+			<if test="@com.cykj.grcloud.util.Ognl@isNotEmpty( pUserRemark )">
+				AND p_user_remark = #{pUserRemark}
+			</if>
+			<if test="@com.cykj.grcloud.util.Ognl@isNotEmpty( pStatus )">
+				AND p_status = #{pStatus}
+			</if>
+			<if test="@com.cykj.grcloud.util.Ognl@isNotEmpty( createTimeStart )">
+				AND <![CDATA[create_time >= #{createTimeStart}]]>
+			</if>
+			<if test="@com.cykj.grcloud.util.Ognl@isNotEmpty( createTimeEnd )">
+				AND <![CDATA[create_time <= #{createTimeEnd}]]>
+			</if>
+		 	<if test="@com.cykj.grcloud.util.Ognl@isNotEmpty( updateTimeStart )">
+				AND <![CDATA[update_time >= #{updateTimeStart}]]>
+			</if>
+			<if test="@com.cykj.grcloud.util.Ognl@isNotEmpty( updateTimeEnd )">
+				AND  <![CDATA[update_time <= #{updateTimeEnd}]]> 
+			</if> 
+		</where>
+	</sql>
+</mapper>

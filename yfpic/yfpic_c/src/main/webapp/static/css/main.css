@@ -1,0 +1,22 @@
+@charset "utf-8";/* CSS Document */
+*{margin:0;padding:0}
+body{background:#0d5391;font-famile:"宋体";}
+.north-panel{height:80px;background:#054781;}
+.north-top{position:relative;height:80px;background:#054781;;}
+.top-left-logo{position:absolute;top:0;right:0;width:1081px;height:21px;line-height:21px;background:url(../images/top-left-logo.png);}
+.top-left-title{line-height:21px;color:#fff;text-align:right;font-size:12px;margin-right:20px;}
+.north-top-left{position:absolute;left:30px;width:600px;height:80px;line-height:80px;color:#fff;font-family:"宋体";font-size:32px;font-weight:600;}
+.north-top-right{position:absolute;right:10px;width:200px;height:80px;}
+.north-top-right ul{position:absolute;right:0px;top:25px;list-style:none;width:180px;height:80px;}
+.north-top-right ul li{position:relative;float:left;background:url(../images/mainbgs.png) no-repeat -86px 0px;width:48px;width:48px;height:40px;margin:5px;}
+.home-icon{cursor:pointer;position:absolute;top:6px;left:11px;background:url(../images/mainbgs.png) no-repeat 0px -19px;width:26px;height:27px;}
+.password-icon{cursor:pointer;position:absolute;top:6px;left:11px;background:url(../images/mainbgs.png) no-repeat -57px -18px;width:27px;height:27px;}
+.logout-icon{cursor:pointer;position:absolute;top:6px;left:11px;background:url(../images/mainbgs.png) no-repeat -29px -18px;width:28px;height:27px;}
+.west-panel{position:relative;width:176px;}
+#footer{text-align:center;color:#fff;height:20px;line-height:20px;font-size:13px;}
+/*修正样式*/
+.layout-panel-west{position:relative;width:176px;}
+.panel-body{background:#0d5391;border:0;overflow:hidden;}
+.panel-header{position:relative;width:176px;height:27px;padding:0;border-left:0;margin-left:3px;}
+.tabs-panels{height:100%}
+.tabs-header-noborder{border-top:1px solid #95b8e7}

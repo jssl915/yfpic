@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yf.pic.mapper.PicMapper">
+
+	<sql id="Example_Where_Clause" >
+		<where>
+			<if  test="@com.cykj.grcloud.util.Ognl@isNotEmpty( picId )">
+				  AND pic_id = #{picId}
+			</if>
+			<if  test="@com.cykj.grcloud.util.Ognl@isNotEmpty( picUserId )">
+				  AND pic_user_id = #{picUserId}
+			</if>
+			<if  test="@com.cykj.grcloud.util.Ognl@isNotEmpty( picUrl )">
+				  AND pic_url = #{picUrl}
+			</if>
+			<if  test="@com.cykj.grcloud.util.Ognl@isNotEmpty( picType )">
+				  AND pic_type = #{picType}
+			</if>
+			<if  test="@com.cykj.grcloud.util.Ognl@isNotEmpty( picName )">
+				  AND pic_name = #{picName}
+			</if>
+			<if  test="@com.cykj.grcloud.util.Ognl@isNotEmpty( picOrder )">
+				  AND pic_order = #{picOrder}
+			</if>
+			<if  test="@com.cykj.grcloud.util.Ognl@isNotEmpty( picRemark )">
+				  AND pic_remark = #{picRemark}
+			</if>
+			<if  test="@com.cykj.grcloud.util.Ognl@isNotEmpty( picStatus )">
+				  AND pic_status = #{picStatus}
+			</if>
+			<if test="@com.cykj.grcloud.util.Ognl@isNotEmpty( createTimeStart )">
+				AND <![CDATA[create_time >= #{createTimeStart}]]>
+			</if>
+			<if test="@com.cykj.grcloud.util.Ognl@isNotEmpty( createTimeEnd )">
+				AND <![CDATA[create_time <= #{createTimeEnd}]]>
+			</if>
+			<if test="@com.cykj.grcloud.util.Ognl@isNotEmpty( notInPicIdList )">
+				  AND pic_id not in
+				 <foreach item="item" index="index" collection="notInPicIdList" open="("  separator=","  close=")">
+		            #{item}
+		      </foreach>
+			</if>
+		</where>
+	</sql>
+	
+	<delete id="removeByCondition" parameterType="java.util.Map">
+		delete from T_P_PIC 
+		<include refid="Example_Where_Clause" />
+	</delete>
+</mapper>

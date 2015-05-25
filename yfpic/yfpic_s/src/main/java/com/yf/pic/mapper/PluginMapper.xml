@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yf.pic.mapper.PluginMapper">
+
+	<sql id="Example_Where_Clause">
+		<where>
+			<if test="@com.cykj.grcloud.util.Ognl@isNotEmpty( notPluginId )">
+				AND plugin_id != #{notPluginId}
+			</if>
+			<if test="@com.cykj.grcloud.util.Ognl@isNotEmpty( pluginNameLike )">
+				AND plugin_name like '%${pluginNameLike}%'
+			</if>
+			<if test="@com.cykj.grcloud.util.Ognl@isNotEmpty( pluginId )">
+				AND plugin_id = #{pluginId}
+			</if>
+			<if test="@com.cykj.grcloud.util.Ognl@isNotEmpty( pluginName )">
+				AND plugin_name = #{pluginName}
+			</if>
+			<if test="@com.cykj.grcloud.util.Ognl@isNotEmpty( pluginPic )">
+				AND plugin_pic = #{pluginPic}
+			</if>
+			<if test="@com.cykj.grcloud.util.Ognl@isNotEmpty( pluginRemark )">
+				AND plugin_remark = #{pluginRemark}
+			</if>
+			<if test="@com.cykj.grcloud.util.Ognl@isNotEmpty( pluginOrder )">
+				AND plugin_order = #{pluginOrder}
+			</if>
+			<if test="@com.cykj.grcloud.util.Ognl@isNotEmpty( picStatus )">
+				AND pic_status = #{picStatus}
+			</if>
+			<if test="@com.cykj.grcloud.util.Ognl@isNotEmpty( createTimeStart )">
+				AND <![CDATA[create_time >= #{createTimeStart}]]>
+			</if>
+			<if test="@com.cykj.grcloud.util.Ognl@isNotEmpty( createTimeEnd )">
+				AND <![CDATA[create_time <= #{createTimeEnd}]]>
+			</if>
+		 	<if test="@com.cykj.grcloud.util.Ognl@isNotEmpty( updateTimeStart )">
+				AND <![CDATA[update_time >= #{updateTimeStart}]]>
+			</if>
+			<if test="@com.cykj.grcloud.util.Ognl@isNotEmpty( updateTimeEnd )">
+				AND  <![CDATA[update_time <= #{updateTimeEnd}]]> 
+			</if> 
+		</where>
+	</sql>
+</mapper>

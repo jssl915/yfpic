@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yf.pic.mapper.UserPluginMapper">
+	<resultMap id="result_ResultMap_UserPluginExtend" type="com.yf.pic.entity.UserPlugin" >
+		<id column="USER_PLUGIN_ID" property="userPluginId"/>
+		<result column="P_USER_ID" property="pUserId"/>
+		<result column="PLUGIN_ID" property="pluginId"/>
+		<result column="PLUGIN_ORDER" property="pluginOrder"/>
+		<result column="PIC_STATUS" property="picStatus"/>
+		<result column="CREATE_TIME" property="createTime"/>
+		
+		<result column="PLUGIN_NAME" property="pluginName"/>
+	</resultMap>
+	<sql id="Example_Where_Clause">
+		<where>
+			<if test="@com.cykj.grcloud.util.Ognl.Ognl@isNotEmpty( pluginNameLike )">
+				AND p.plugin_name like '%${pluginNameLike}%'
+			</if>
+			<if test="@com.cykj.grcloud.util.Ognl@isNotEmpty( userPluginId )">
+				AND up.user_plugin_id = #{userPluginId}
+			</if>
+			<if test="@com.cykj.grcloud.util.Ognl@isNotEmpty( pUserId )">
+				AND up.p_user_id = #{pUserId}
+			</if>
+			<if test="@com.cykj.grcloud.util.Ognl@isNotEmpty( pluginId )">
+				AND up.plugin_id = #{pluginId}
+			</if>
+			<if test="@com.cykj.grcloud.util.Ognl@isNotEmpty( pluginOrder )">
+				AND up.plugin_order = #{pluginOrder}
+			</if>
+			<if test="@com.cykj.grcloud.util.Ognl@isNotEmpty( picStatus )">
+				AND up.pic_status = #{picStatus}
+			</if>
+			<if test="@com.cykj.grcloud.util.Ognl@isNotEmpty( createTimeStart )">
+				AND <![CDATA[create_time >= #{createTimeStart}]]>
+			</if>
+			<if test="@com.cykj.grcloud.util.Ognl@isNotEmpty( createTimeEnd )">
+				AND <![CDATA[create_time <= #{createTimeEnd}]]>
+			</if>
+		 	<if test="@com.cykj.grcloud.util.Ognl@isNotEmpty( updateTimeStart )">
+				AND <![CDATA[update_time >= #{updateTimeStart}]]>
+			</if>
+		</where>
+	</sql>
+	<select id="getCountByCondition"  parameterType="java.util.Map"  resultType="java.lang.Integer">
+		select count(1) from T_P_USER_PLUGIN up
+		left join T_P_PLUGIN p on up.plugin_id = p.plugin_id
+		<include refid="Example_Where_Clause" />
+	</select> 
+	
+	<select id="selectEntitysByCondition" parameterType="java.util.Map" resultMap="result_ResultMap_UserPluginExtend">
+		select up.*,p.plugin_name from T_P_USER_PLUGIN up
+		left join T_P_PLUGIN p on up.plugin_id = p.plugin_id
+		<include refid="Example_Where_Clause" />
+		<if test="orderByClause != null and orderByClause !=''">
+			order by ${orderByClause}
+		</if>
+	</select>
+</mapper>
