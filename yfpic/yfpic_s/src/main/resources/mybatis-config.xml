@@ -13,8 +13,6 @@
 		<setting name="aggressiveLazyLoading" value="false"/>
 	</settings>
 	<plugins>
-		<plugin interceptor="com.cykj.grcloud.mybatis.pagination.PaginationInterceptor">
-			<property name="database" value="mysql" />
-		</plugin>
+		<plugin interceptor="com.cykj.grcloud.mybatis.pagination.PaginationInterceptor"></plugin>
 	</plugins>
 </configuration>

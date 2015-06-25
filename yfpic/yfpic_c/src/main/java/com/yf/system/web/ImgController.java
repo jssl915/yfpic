@@ -8,7 +8,6 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.multipart.MultipartFile;
@@ -18,7 +17,6 @@ import com.yf.util.JSONUtils;
 import com.yf.web.BaseController;
 
 @Controller
-@Scope("session")
 @RequestMapping(value = "/img")
 public class ImgController extends BaseController {
 	Logger log = LoggerFactory.getLogger(ImgController.class);

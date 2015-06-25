@@ -96,5 +96,9 @@ function initPwd(deleteId){
 		}
 	}); 	
 }
+
+function showAdd(){
+	parent.openChildTab(ctx+'/system/prg/user/showAdd','addUser','用户新增');
+}
 </script>
 </html>

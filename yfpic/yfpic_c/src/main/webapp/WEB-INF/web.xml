@@ -8,16 +8,9 @@
 		<param-name>contextConfigLocation</param-name>
 		<param-value>classpath:applicationContext.xml</param-value>
 	</context-param>
-	<context-param>
-		<param-name>ScanServicePackage</param-name>
-		<param-value>com.yf.**.service</param-value>
-	</context-param>
 	<listener>
-		<listener-class>com.yf.system.util.context.CyContextLoaderListener</listener-class>
+		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class> 
 	</listener>
-	<listener>
-    	<listener-class>org.springframework.web.context.request.RequestContextListener</listener-class>
-  	</listener>
 	<filter>
 		<filter-name>CharacterEncodingFilter</filter-name>
 		<filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>

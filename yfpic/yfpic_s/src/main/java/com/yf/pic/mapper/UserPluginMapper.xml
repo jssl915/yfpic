@@ -13,7 +13,7 @@
 	</resultMap>
 	<sql id="Example_Where_Clause">
 		<where>
-			<if test="@com.cykj.grcloud.util.Ognl.Ognl@isNotEmpty( pluginNameLike )">
+			<if test="@com.cykj.grcloud.util.Ognl@isNotEmpty( pluginNameLike )">
 				AND p.plugin_name like '%${pluginNameLike}%'
 			</if>
 			<if test="@com.cykj.grcloud.util.Ognl@isNotEmpty( userPluginId )">

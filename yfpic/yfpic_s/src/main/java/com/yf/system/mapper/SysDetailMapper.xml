@@ -4,6 +4,12 @@
 
 	<sql id="Example_Where_Clause">
 		<where>
+			<if test="@com.cykj.grcloud.util.Ognl@isNotEmpty( idList )">
+				 And detail_id in 
+			    <foreach item="item" collection="idList" separator="," open="(" close=")" index="">  
+			      #{item}  
+			    </foreach>  
+			</if>
 			<if test="@com.cykj.grcloud.util.Ognl@isNotEmpty( notDetailId )">
 				AND detail_id != #{notDetailId}
 			</if>

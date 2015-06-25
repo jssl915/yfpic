@@ -10,7 +10,7 @@ public class GenerateExampleSqllMain {
 	
 	public static void main(String[] args) {
 		//根据entity.java生成对应的sqlExample文件
-		String className = "com.cykj.system.entity.SysDetail";
+		String className = "com.yf.system.entity.SysUser";
 		String xml = new ExampleSql(className).generate();
 		logger.debug(xml);
 	}

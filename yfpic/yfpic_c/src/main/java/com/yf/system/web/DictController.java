@@ -1,7 +1,9 @@
 package com.yf.system.web;
 
 import java.io.PrintWriter;
+import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -10,7 +12,6 @@ import javax.servlet.http.HttpServletResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -22,7 +23,6 @@ import com.yf.util.JSONUtils;
 import com.yf.web.BaseController;
 
 @Controller
-@Scope("session")
 @RequestMapping(value = "/system/prg/dict")
 public class DictController extends BaseController {
 	Logger log = LoggerFactory.getLogger(DictController.class);
@@ -74,19 +74,13 @@ public class DictController extends BaseController {
 	@RequestMapping(value = "delete")
 	public void delete(HttpServletRequest request,PrintWriter out){
 		log.debug("method: delete() ");
-		String msg = "操作成功";
-		boolean result = true;
-		try {
-			String ids = request.getParameter("ids");
-			String[] aDeleteId = ids.split(",");
-			for(String id:aDeleteId){
-				sysDictService.removeById(Long.valueOf(id));
-			}
-		} catch (Exception e) {
-			msg = "系统发生异常！";
-			result = false;
-		}
-		ajaxJsonResponse(out, result, msg);
+		String ids = request.getParameter("ids");
+		String[] aIds = ids.split(",");
+		List<String>idList = Arrays.asList(aIds);
+		Map<String,Object> map = new HashMap<String,Object>();
+		map.put("idList", idList);
+		sysDictService.removeByCondition(map);
+		ajaxJsonResponse(out, true, "操作成功");
 	}
 	@RequestMapping(value = "checkDictName")
 	public void checkDictName(HttpServletRequest request,HttpServletResponse response,SysDict dict) {

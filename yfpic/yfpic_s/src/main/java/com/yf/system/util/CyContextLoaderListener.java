@@ -12,39 +12,22 @@ import org.springframework.web.context.ContextLoaderListener;
 import org.springframework.web.context.support.WebApplicationContextUtils;
 
 import com.cykj.grcloud.mybatis.MapperXmlGenerate;
+import com.cykj.grcloud.mybatis.pagination.PaginationInterceptor;
 import com.yf.util.SysProperties;
-
-
 /**
  * 系统启动时加载
- * @version 1.0
  */
 public class CyContextLoaderListener extends ContextLoaderListener implements ServletContextListener {
-
 	protected static final Logger logger = LoggerFactory.getLogger(CyContextLoaderListener.class);
-	
-	@Override
-	public void contextDestroyed(ServletContextEvent event) { 
-		super.contextDestroyed(event);
-	}
-	 
-	 
-	public void contextInitialized(ServletContextEvent event) {
-		try {
-			new SysProperties().loadProperties(getClass().getResourceAsStream("/yfbase_s.properties"));
-		} catch (Exception e1) {
-			e1.printStackTrace();
-		}
+	public void contextInitialized(ServletContextEvent event){
 		super.contextInitialized(event);
-		
 		ServletContext sc = event.getServletContext();
 		ApplicationContext context = WebApplicationContextUtils.getRequiredWebApplicationContext(sc);
 		SqlSessionFactory factory = context.getBean(SqlSessionFactory.class);
-		new MapperXmlGenerate(factory.getConfiguration(),sc.getInitParameter("contextScanPackage"),"mysql");
-		ServletContext servletContext = event.getServletContext();
-		if (servletContext != null){
-			ObjectFactory.getInstance(servletContext);
-		}
+		new SysProperties().loadProperties(getClass().getResourceAsStream("/service.properties"));
+		PaginationInterceptor.database=SysProperties.getProperty("database");
+		new MapperXmlGenerate(factory.getConfiguration(),SysProperties.getProperty("contextScanPackage"),PaginationInterceptor.database);
+		//加载数据字典缓存
 		SystemCache.cacheAllDict(); 
 	}
 }

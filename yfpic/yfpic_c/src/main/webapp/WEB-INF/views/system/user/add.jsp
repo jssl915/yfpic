@@ -4,11 +4,14 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style>
+body{background:#fff;height:auto;}
+</style>
 </head>
 <body>
 <form id="form1" action="insert">
 <div class="dialogPage">
-	<div class="om-panel-header">新增</div>
+	<div class="om-panel-header" style="border-top:0;">新增</div>
 	<div class="editDiv">
 		<table class="editTable">
 		<tr>
@@ -35,8 +38,9 @@
 		</tr>
 	   </table>
 	   <div class="editBtn">
-			<button type="submit" class="button">&nbsp;保存&nbsp;</button>
-			<button type="button" class="button" onclick="javascript:art.dialog.close();">&nbsp;关闭&nbsp;</button>
+			<button id="save" type="button" class="button">&nbsp;保存&nbsp;</button>
+			<button id="clear" type="button" class="button">&nbsp;清空&nbsp;</button>
+			<button type="button" class="button" onclick="closeChildTab();">&nbsp;关闭&nbsp;</button>
 		</div>
 	</div>
 </div>
@@ -61,12 +65,36 @@ $(function(){
     $('#sex').combobox({  
     	data:JSON.parse('${sexCombo}'),
     	panelHeight:'auto',
-    	editable:false,
-    	value:0
+    	editable:false
     }); 
-	$(":submit").click(function(){
+	$("#save").click(function(){
 		if(!$("#form1").form('validate')){return false;}
+		 $.ajax({
+             type: "POST",
+             dataType: "json",
+             url:'insert',
+             data: $('#form1').serialize(),
+             success: function (data) {
+            	 if(data.success){
+     				$.messager.show({ 
+     					title:'温馨提示:', 
+     					msg:'新增成功!', 
+     					timeout:1500, 
+     					showType:'slide'
+     				});
+     			} else {
+     				$.messager.alert('提示:',data.msg,'warning'); 
+     			}
+             }
+         });
+	});
+	$('#clear').click(function(){
+		clearForm(document.forms[0]);
+		$('#userPwd').val('${initPassword}');
 	});
 });
+function closeChildTab(){
+	parent.closeChildTab('用户新增');
+}
 </script>
 </html>

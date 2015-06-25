@@ -1,8 +1,10 @@
 package com.yf.system.web;
 
 import java.io.PrintWriter;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -11,7 +13,6 @@ import javax.servlet.http.HttpServletResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -26,7 +27,6 @@ import com.yf.util.SysProperties;
 import com.yf.web.BaseController;
 
 @Controller
-@Scope("session")
 @RequestMapping(value = "/system/prg/user")
 public class UserController extends BaseController {
 	Logger log = LoggerFactory.getLogger(UserController.class);
@@ -67,9 +67,9 @@ public class UserController extends BaseController {
 		return "system/user/add";
 	}
 	@RequestMapping(value = "insert")
-	public String insert(HttpServletRequest request,SysUser user){
+	public void insert(HttpServletRequest request,PrintWriter out,SysUser user){
 		sysUserService.insert(user);
-		return "success";
+		ajaxJsonResponse(out, true, "操作成功");
 	}
 	@RequestMapping(value = "showEdit")
 	public String showEdit(HttpServletRequest request){
@@ -99,17 +99,13 @@ public class UserController extends BaseController {
 	@RequestMapping(value = "delete")
 	public void delete(HttpServletRequest request,PrintWriter out){
 		log.debug("method: delete() ");
-		String msg = "操作成功";
-		boolean result = true;
-		try {
-			String ids = request.getParameter("ids");
-			String[] userIds = ids.split(",");
-			sysUserService.deleteUserByIds(userIds);
-		} catch (Exception e) {
-			msg = "系统发生异常！";
-			result = false;
-		}
-		ajaxJsonResponse(out, result, msg);
+		String ids = request.getParameter("ids");
+		String[] aIds = ids.split(",");
+		List<String>idList = Arrays.asList(aIds);
+		Map<String,Object> map = new HashMap<String,Object>();
+		map.put("idList", idList);
+		sysUserService.removeByCondition(map);
+		ajaxJsonResponse(out, true, "操作成功");
 	}
 	@RequestMapping(value = "initPwd")
 	public void initPwd(HttpServletRequest request,PrintWriter out){

@@ -8,10 +8,6 @@
 		<param-name>contextConfigLocation</param-name>
 		<param-value>classpath:applicationContext.xml</param-value>
 	</context-param>
-	<context-param>
-		<param-name>contextScanPackage</param-name>
-		<param-value>com.yf.**.mapper</param-value>
-	</context-param>
 	<filter>
 		<filter-name>CharacterEncodingFilter</filter-name>
 		<filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>

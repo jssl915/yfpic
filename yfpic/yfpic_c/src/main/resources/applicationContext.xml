@@ -13,11 +13,9 @@
      http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task-3.0.xsd
      http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-3.0.xsd
      http://mybatis.org/schema/mybatis-spring http://mybatis.org/schema/mybatis-spring.xsd">
-
 	 
-	<context:annotation-config />
 	<context:component-scan base-package="com.yf" />
-	
 	<import resource="classpath:spring/remoting-c-servlet.xml"/>
-	<import resource="applicationContext-shiro.xml" />
+	<import resource="classpath:applicationContext-shiro.xml" />
+	<import resource="classpath:applicationContext-timer.xml" />
 </beans>

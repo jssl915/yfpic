@@ -28,13 +28,11 @@
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-webmvc</artifactId>
 			<version>${spring.version}</version>
-			<scope>provided</scope>
 		</dependency>
 		<dependency>
 			<groupId>com.oracle</groupId>
 			<artifactId>ojdbc6</artifactId>
 			<version>11.2.0.3</version>
-			<scope>provided</scope>
 		</dependency>
 		<dependency>
 			<groupId>mysql</groupId>
@@ -61,7 +59,6 @@
 			<artifactId>cglib</artifactId>
 			<version>3.1</version>
 		</dependency>
-
 		<dependency>
 			<groupId>org.apache.commons</groupId>
 			<artifactId>commons-lang3</artifactId>
@@ -82,8 +79,6 @@
 				</exclusion>
 			</exclusions>
 		</dependency>
-        
-		
 		<!-- cxf start -->
 		<dependency>
 			<groupId>org.apache.cxf</groupId>
@@ -141,7 +136,6 @@
 		<!-- cxf end -->
 	</dependencies>
 	<build>
-		<finalName>yfpic_s</finalName>
 		<resources>
 			<resource>
 				<directory>src/main/java</directory>
@@ -159,11 +153,10 @@
 		<plugins>
 			<!-- compiler插件, 设定JDK版本 -->
 			<!--打jar插件 maven-shade-plugin -->
-
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
-				<version>2.5.1</version>
+				<version>2.5.1</version><!--$NO-MVN-MAN-VER$-->
 				<configuration>
 					<source>1.6</source>
 					<target>1.6</target>

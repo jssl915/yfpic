@@ -10,8 +10,8 @@ import com.yf.system.entity.SysDetail;
 import com.yf.system.entity.SysDict;
 import com.yf.system.mapper.SysDetailMapper;
 import com.yf.system.mapper.SysDictMapper;
-import com.yf.system.util.ObjectFactory;
 import com.yf.system.util.OscacheFactory;
+import com.yf.system.util.SpringContextHolder;
 import com.yf.system.util.SystemCache;
 
 
@@ -34,13 +34,13 @@ public class DictCache {
 	}
 
 	public Hashtable<String, Map<String, SysDetail>>loadData(){
-		SysDictMapper sDictMapper = (SysDictMapper) ObjectFactory.getBean(SysDictMapper.class); 
-		SysDetailMapper SysDetailMapper = (SysDetailMapper) ObjectFactory.getBean(SysDetailMapper.class); 
+		SysDictMapper sDictMapper = SpringContextHolder.getBean("sysDictMapper");
+		SysDetailMapper sysDetailMapper = SpringContextHolder.getBean("sysDetailMapper"); 
 		Hashtable<String, Map<String, SysDetail>> dict = new Hashtable<String, Map<String, SysDetail>>();
 		Map<String,Object> para = new HashMap<String,Object>();
 		para.put("detailStatus", 1);
 		List<SysDict>sDictList = sDictMapper.findEntitysByCondition(null);
-		List<SysDetail> SysDetailList = SysDetailMapper.findEntitysByCondition(para);
+		List<SysDetail> SysDetailList = sysDetailMapper.findEntitysByCondition(para);
 		Map<String, SysDetail> dictDetailMap = null;
 		for(SysDict sd:sDictList){
 			String dictId = sd.getDictId().toString();

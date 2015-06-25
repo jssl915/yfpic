@@ -4,6 +4,12 @@
 
 	<sql id="Example_Where_Clause" >
 		<where>
+			<if test="@com.cykj.grcloud.util.Ognl@isNotEmpty( idList )">
+				 And role_menu_id in 
+			    <foreach item="item" collection="idList" separator="," open="(" close=")" index="">  
+			      #{item}  
+			    </foreach>  
+			</if>
 			<if  test="@com.cykj.grcloud.util.Ognl@isNotEmpty( roleMenuId )">
 				  AND role_menu_id = #{roleMenuId}
 			</if>

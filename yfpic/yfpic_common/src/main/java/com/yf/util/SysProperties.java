@@ -18,9 +18,13 @@ public class SysProperties {
 	private static Resource[] locations;
 	private static Properties prop;
 
-	public void loadProperties(InputStream is) throws Exception {
+	public void loadProperties(InputStream is){
 		prop = new Properties();
-		prop.load(is);
+		try {
+			prop.load(is);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 
 	public void initial() throws IOException {

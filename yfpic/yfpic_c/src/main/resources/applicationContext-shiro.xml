@@ -81,6 +81,7 @@
 			<value>
 				/security/login = anon
 				/pic/** = anon
+				/hello/** = anon
 				/static/** = anon
 				/** = authc
 		    </value>

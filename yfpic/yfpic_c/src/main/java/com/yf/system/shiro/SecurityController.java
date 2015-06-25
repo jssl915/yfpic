@@ -18,7 +18,6 @@ import org.apache.shiro.authc.UnknownAccountException;
 import org.apache.shiro.authc.UsernamePasswordToken;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -32,7 +31,6 @@ import com.yf.web.BaseController;
  * and logout.
  */
 @Controller
-@Scope("session")
 @RequestMapping(value = "/security")
 public class SecurityController {
 	

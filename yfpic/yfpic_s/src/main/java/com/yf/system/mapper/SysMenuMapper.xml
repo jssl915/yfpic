@@ -3,6 +3,12 @@
 <mapper namespace="com.yf.system.mapper.SysMenuMapper">
 	<sql id="Example_Where_Clause">
 		<where>
+			<if test="@com.cykj.grcloud.util.Ognl@isNotEmpty( idList )">
+				 And MENU_ID in 
+			    <foreach item="item" collection="idList" separator="," open="(" close=")" index="">  
+			      #{item}  
+			    </foreach>  
+			</if>
 			<if test="@com.cykj.grcloud.util.Ognl@isNotEmpty( notMenuId )">
 				AND MENU_ID != #{notMenuId}
 			</if>

@@ -14,8 +14,6 @@ import com.yf.system.service.DictCache;
 public class SystemCache {
 	private static Logger log = Logger.getLogger(SystemCache.class);
 	public static final String CACHE_DICT = "CACHE_DICT";
-	public static final String CACHE_MENU = "CACHE_MENU";
-	
 	//缓存数据字典
 	public static void cacheAllDict(){
 		log.debug("method: cacheAllDict() ");
@@ -23,7 +21,6 @@ public class SystemCache {
 		Hashtable<String, Map<String, SysDetail>> dict = DictCache.getInstance().loadData();
 		oscacheFactory.putObject(CACHE_DICT, dict);
 	}
-	
 	//重新缓存数据字典
 	public static void reCacheDict() {
 		log.debug("method: reCacheDict() ");

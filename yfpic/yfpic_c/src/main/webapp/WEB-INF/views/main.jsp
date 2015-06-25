@@ -152,6 +152,10 @@ function openChildTab(url,menuId,text){
 		tabs.tabs('add', opts);
 	}
 } 
+
+function closeChildTab(menuId){
+	$('#eTab').tabs('close',menuId);
+}
 </script>
 </body>
 </html>

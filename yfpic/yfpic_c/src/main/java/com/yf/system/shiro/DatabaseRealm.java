@@ -34,6 +34,7 @@ import com.yf.system.service.SysMenuService;
 import com.yf.system.service.SysRoleService;
 import com.yf.system.service.SysUserService;
 import com.yf.util.MD5Encoder;
+import com.yf.util.SysProperties;
 
 /**
  * The Spring application's one and only configured Apache Shiro Realm.
@@ -146,6 +147,8 @@ public class DatabaseRealm extends AuthorizingRealm {
 				 * 将用户信息放到session
 				 */
 				setSession("user",user);
+				//加载系统配置文件
+				new SysProperties().loadProperties(getClass().getResourceAsStream("/sys.properties"));
 				return sai;
 			} else {
 				return null;
